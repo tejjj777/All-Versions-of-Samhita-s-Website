@@ -1,0 +1,792 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samhitha Ayyagari — Culinary Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#33202B;
+    --ink-dim:#85636F;
+    --base:#F6E3E5;
+    --base-raised:#FBF2F3;
+    --line:#E4C8D1;
+    --accent:#BB528A;
+    --accent-deep:#93396B;
+    --paper:#FDF9FA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--base);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Source Serif 4',serif;
+    font-weight:600;
+    letter-spacing:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+  section{padding:120px 0;}
+  @media(max-width:640px){section{padding:72px 0;} .wrap{padding:0 20px;}}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(246,227,229,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1040px;margin:0 auto;padding:18px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .nav-name{font-family:'Source Serif 4',serif;font-size:1.05rem;font-weight:600;}
+  .nav-links{display:flex;gap:28px;font-size:0.88rem;color:var(--ink-dim);}
+  .nav-links a:hover{color:var(--accent);}
+  @media(max-width:640px){.nav-links{gap:16px;font-size:0.78rem;}}
+
+  /* HERO */
+  .hero{
+    padding-top:180px;padding-bottom:100px;
+    opacity:0;transform:translateY(14px);
+    animation:rise 0.9s ease-out forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  .hero-label{
+    font-size:0.82rem;color:var(--accent);
+    margin-bottom:22px;font-weight:500;
+    letter-spacing:0.04em;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 5.5vw, 4rem);
+    line-height:1.1;
+    max-width:820px;
+  }
+  .hero h1 em{font-style:normal;color:var(--accent);font-weight:600;}
+  .hero p{
+    margin-top:26px;max-width:580px;
+    color:var(--ink-dim);font-size:1.05rem;
+  }
+  .hero-meta{
+    display:flex;gap:40px;margin-top:56px;
+    border-top:1px solid var(--line);padding-top:24px;
+    max-width:640px;flex-wrap:wrap;
+  }
+  .hero-meta div{font-size:0.85rem;}
+  .hero-meta span{display:block;color:var(--ink-dim);font-size:0.78rem;margin-bottom:4px;}
+
+  /* SECTION HEADERS */
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:52px;flex-wrap:wrap;gap:12px;}
+  .sec-head h2{font-size:2rem;}
+  .sec-head .count{color:var(--accent);font-size:0.9rem;}
+
+  /* ABOUT */
+  #about{background:var(--base-raised);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--ink-dim);margin-bottom:18px;font-size:1rem;}
+  .skills-list{list-style:none;}
+  .skills-list li{
+    display:flex;justify-content:space-between;
+    padding:14px 0;border-bottom:1px solid var(--line);
+    font-size:0.92rem;
+  }
+  .skills-list li span:last-child{color:var(--accent);font-size:0.85rem;font-weight:500;}
+
+  /* MENU / EXPERIENCE */
+  .menu-list{border-top:1px solid var(--line);}
+  .menu-item{
+    padding:30px 0;border-bottom:1px solid var(--line);
+    display:grid;grid-template-columns:110px 1fr auto;gap:24px;align-items:start;
+  }
+  @media(max-width:640px){.menu-item{grid-template-columns:1fr;gap:8px;}}
+  .menu-item .yr{color:var(--accent);font-size:0.88rem;font-weight:500;white-space:nowrap;}
+  .menu-item h3{font-size:1.2rem;margin-bottom:6px;font-weight:600;}
+  .menu-item .desc{color:var(--ink-dim);font-size:0.92rem;max-width:520px;}
+  .menu-item .role{
+    font-size:0.78rem;color:var(--accent);
+    border:1px solid var(--accent);
+    padding:5px 12px;border-radius:2px;
+    white-space:nowrap;align-self:start;
+  }
+
+  /* GALLERY */
+  #gallery{background:var(--base-raised);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .plate-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  @media(max-width:760px){.plate-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:480px){.plate-grid{grid-template-columns:1fr;}}
+  .plate{
+    aspect-ratio:4/5;
+    border:1px dashed var(--line);
+    border-radius:2px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:10px;color:var(--ink-dim);
+    transition:border-color 0.2s;
+  }
+  .plate:hover{border-color:var(--accent);}
+  .plate-ring{
+    width:56px;height:56px;border-radius:50%;
+    border:1.5px solid var(--accent);
+  }
+  .plate span{font-size:0.78rem;letter-spacing:0.02em;}
+
+  /* RESUME */
+  .resume-row{
+    display:flex;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--line);
+    padding-top:48px;flex-wrap:wrap;gap:32px;
+  }
+  .resume-row p{color:var(--ink-dim);max-width:440px;}
+  .btn{
+    display:inline-block;background:var(--accent);color:#FDF6F8;
+    padding:14px 28px;border-radius:2px;font-size:0.9rem;font-weight:600;
+    border:none;cursor:pointer;
+  }
+  .btn:hover{background:var(--accent-deep);}
+  .cred-list{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:640px){.cred-list{grid-template-columns:1fr;}}
+  .cred-list div{border-top:1px solid var(--line);padding-top:16px;}
+  .cred-list h3{font-size:0.95rem;margin-bottom:10px;font-weight:600;}
+  .cred-row{
+    font-size:0.85rem;color:var(--ink-dim);
+    padding:8px 0;
+    border-bottom:1px solid rgba(187,82,138,0.22);
+    line-height:1.45;
+  }
+  .cred-list .cred-row:last-child{border-bottom:none;padding-bottom:0;}
+
+  /* CONTACT */
+  #contact{background:var(--base-raised);border-top:1px solid var(--line);}
+  .contact-inner{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px;}
+  .contact-inner h2{font-size:2.4rem;max-width:520px;}
+  .contact-links{display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+  @media(max-width:640px){.contact-links{align-items:flex-start;}}
+  .contact-links a{font-size:0.95rem;color:var(--ink-dim);}
+  .contact-links a:hover{color:var(--accent);}
+
+  footer{padding:32px;text-align:center;color:var(--ink-dim);font-size:0.78rem;}
+
+  /* CROSSED UTENSILS 3D */
+  #utensil-canvas-wrap{width:100%;max-width:420px;height:340px;position:relative;cursor:grab;margin-top:40px;}
+  #utensil-canvas-wrap.grabbing{cursor:grabbing;}
+  #utensil-canvas-wrap canvas{display:block;width:100%;height:100%;}
+  @media(max-width:640px){#utensil-canvas-wrap{height:280px;}}
+  #utensil-hint{
+    position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+    font-size:0.76rem;color:var(--ink-dim);letter-spacing:0.02em;
+    opacity:0.75;pointer-events:none;transition:opacity 0.6s;
+  }
+  #utensil-hint.hide{opacity:0;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-name">Samhitha Ayyagari</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#menu">Experience</a>
+      <a href="#gallery">Work</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-label">CULINARY MANAGEMENT STUDENT · CHICAGO, IL</div>
+    <h1>Four years in restaurants, <em>and still hungry to learn.</em></h1>
+    <p>I'm a Culinary Management student at Kendall College looking for a part-time server position. I've spent the last four years working in restaurants — serving up to 60 guests a shift at Sakana, expediting 300 orders in a night at Rail Trail Flatbread, and staging at Frontera Grill and Sifr here in Chicago. I like the pace, I like the work, and I'm building my career in this industry.</p>
+    <div class="hero-meta">
+      <div><span>Based in</span>Chicago, IL</div>
+      <div><span>Program</span>Kendall College at NLU · BA Culinary Management</div>
+      <div><span>Open to</span>Part-time server positions</div>
+    </div>
+    <div id="utensil-canvas-wrap" class="">
+      <div id="utensil-hint" class="hide">drag to rotate</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2 style="font-size:2rem;margin-bottom:28px;">About Me</h2>
+      <p>I didn't start in fine dining. I started as a cashier at Market Basket, worked the drive-through at Panera, and learned how a dining room actually runs as a host and expeditor at Rail Trail Flatbread. Those jobs taught me that a good shift comes down to preparation. — knowing the menu, prioritizing the guests, and being ready before the rush.</p>
+      <p>Since starting school in Chicago, I've staged at Frontera Grill and Sifr and volunteered with the National Restaurant Association, which pushed me to be faster and more precise. My coursework covers the business side of food — ethics, nutrition, how the industry works — and I bring both halves of that with me on every shift.</p>
+    </div>
+    <div>
+      <h3 style="font-size:1rem;margin-bottom:20px;color:var(--ink-dim);">Skills &amp; Strengths</h3>
+      <ul class="skills-list">
+        <li><span>Guest Service</span><span>4 Years Experience</span></li>
+        <li><span>High-Volume Service</span><span>60 Covers / Shift</span></li>
+        <li><span>Expediting</span><span>300 orders / Shift</span></li>
+        <li><span>Menu &amp; Allergen Knowledge</span><span>ServSafe Certified</span></li>
+        <li><span>Mise En place &amp; Plating</span><span>Fine Dining Stages</span></li>
+        <li><span>POS &amp; Kitchen Operations</span><span>Highly Experienced</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Experience</h2>
+      <div class="count">Kitchens, Events &amp; Service</div>
+    </div>
+    <div class="menu-list">
+      <div class="menu-item">
+        <div class="yr">Jan – Jul 2026</div>
+        <div>
+          <h3>Sakana All-You-Can-Eat Sushi — Chicago, IL</h3>
+          <p class="desc">Served up to 60 guests per shift at a high-volume AYCE sushi house, balancing friendly table-side hospitality with fast turns and constant multi-tasking under pressure.</p>
+        </div>
+        <div class="role">Server</div>
+      </div>
+      <div class="menu-item">
+        <div class="yr">May 2026</div>
+        <div>
+          <h3>National Restaurant Association — Chicago, IL</h3>
+          <p class="desc">Volunteered on a team of five, preparing and plating four courses, running food from the kitchen, and helping serve over 500 guests a day.</p>
+        </div>
+        <div class="role">Volunteer</div>
+      </div>
+      <div class="menu-item">
+        <div class="yr">Nov 2025</div>
+        <div>
+          <h3>Sifr — Chicago, IL</h3>
+          <p class="desc">Prepped small plates, herbs, and vegetables, and supported chefs through a charity gala. High-volume event service that sharpened speed, precision, and self-sufficiency on the line.</p>
+        </div>
+        <div class="role">Stage</div>
+      </div>
+      <div class="menu-item">
+        <div class="yr">Oct 2025</div>
+        <div>
+          <h3>Frontera Grill — Chicago, IL</h3>
+          <p class="desc">Plated and prepared a 6-course fine-dining tasting menu for a private event of 36 guests. Assisted with mise en place and got firsthand exposure to professional event kitchen operations.</p>
+        </div>
+        <div class="role">Stage</div>
+      </div>
+      <div class="menu-item">
+        <div class="yr">2024 – 2025</div>
+        <div>
+          <h3>Rail Trail Flatbread Co. — Milford, MA</h3>
+          <p class="desc">Greeted and seated guests in an organized flow, handled takeout orders, ran food with full menu and expedited up to 300 orders in a single shift.</p>
+        </div>
+        <div class="role">Host / Expeditor</div>
+      </div>
+      <div class="menu-item">
+        <div class="yr">2023 – 2024</div>
+        <div>
+          <h3>Panera Bread — Greenville, RI</h3>
+          <p class="desc">Fulfilled drive-through and dine-in orders in a fast-paced environment, assisted with kitchen prep and expediting, and learned full closing operations of a kitchen.</p>
+        </div>
+        <div class="role">Drive-Thru Team</div>
+      </div>
+      <div class="menu-item">
+        <div class="yr">2022 – 2023</div>
+        <div>
+          <h3>Market Basket — Bellingham, MA</h3>
+          <p class="desc">Checked guests out efficiently and accurately while building the customer-service foundation and POS fluency I still use every shift.</p>
+        </div>
+        <div class="role">Cashier</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Work</h2>
+      <div class="count">Plated &amp; Documented</div>
+    </div>
+    <div class="plate-grid">
+      <div class="plate"><div class="plate-ring"></div><span>add photo</span></div>
+      <div class="plate"><div class="plate-ring"></div><span>add photo</span></div>
+      <div class="plate"><div class="plate-ring"></div><span>add photo</span></div>
+      <div class="plate"><div class="plate-ring"></div><span>add photo</span></div>
+      <div class="plate"><div class="plate-ring"></div><span>add photo</span></div>
+      <div class="plate"><div class="plate-ring"></div><span>add photo</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Resume</h2>
+    </div>
+    <div class="resume-row">
+      <p>My objective, education, experience, stage experience, volunteer work, and certifications.</p>
+      <button class="btn" id="download-resume">Download résumé (PDF)</button>
+    </div>
+    <div class="cred-list">
+      <div>
+        <h3>Education</h3>
+        <div class="cred-row">Kendall College at National Louis University, Chicago</div>
+        <div class="cred-row">BA, Culinary Management · Sept 2025–present</div>
+        <div class="cred-row">Coursework: Professional Cooking, Nutritional Cooking, Food Ethics, Hospitality Industry</div>
+      </div>
+      <div>
+        <h3>Certifications</h3>
+        <div class="cred-row">ServSafe Food Handler — exp. 6/18/2029</div>
+        <div class="cred-row">ServSafe Allergen Awareness — exp. 6/12/2029</div>
+        <div class="cred-row">BASSET — exp. 7/26/2029</div>
+      </div>
+      <div>
+        <h3>Volunteer &amp; other</h3>
+        <div class="cred-row">National Restaurant Association (May 2026)</div>
+        <div class="cred-row">Plating, food running, 500+ guests/day</div>
+        <div class="cred-row">Worked with a team of five</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-inner">
+    <h2>Hiring for a role in your restaurant? Let's talk.</h2>
+    <div class="contact-links">
+      <a href="mailto:sam123ayya@gmail.com">sam123ayya@gmail.com</a>
+      <a href="tel:+17814593660">(781) 459-3660</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Samhitha Ayyagari. Made by my husband </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+/* ---------- RESUME PDF — matches the original resume document ---------- */
+(function(){
+  document.getElementById('download-resume').addEventListener('click', function(){
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'pt', 'letter');
+    const PW = 612, M = 54, CW = PW - M*2;
+    let y = 64;
+
+    function ensure(h){ if(y + h > 740){ doc.addPage(); y = 64; } }
+
+    function para(str, size, gap){
+      doc.setFont('helvetica','normal');
+      doc.setFontSize(size);
+      const lines = doc.splitTextToSize(str, CW);
+      ensure(lines.length * size * 1.3);
+      doc.text(lines, M, y);
+      y += lines.length * size * 1.3 + gap;
+    }
+
+    function heading(str){
+      y += 8;
+      ensure(34);
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(10.5);
+      doc.text(str.toUpperCase(), M, y);
+      y += 5;
+      doc.setLineWidth(0.8);
+      doc.line(M, y, PW - M, y);
+      y += 14;
+    }
+
+    function entry(title, date, role){
+      ensure(48);
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(10);
+      doc.text(title, M, y);
+      if(date){
+        doc.setFont('helvetica','normal');
+        doc.setFontSize(9);
+        doc.text(date, PW - M, y, {align:'right'});
+      }
+      y += 13;
+      if(role){
+        doc.setFont('helvetica','italic');
+        doc.setFontSize(9.5);
+        doc.text(role, M, y);
+        y += 13;
+      }
+    }
+
+    function bullet(str){
+      doc.setFont('helvetica','normal');
+      doc.setFontSize(9.5);
+      const lines = doc.splitTextToSize(str, CW - 14);
+      ensure(lines.length * 11.5);
+      doc.text('\u2022', M + 2, y);
+      doc.text(lines, M + 14, y);
+      y += lines.length * 11.5 + 2;
+    }
+
+    // Header
+    doc.setFont('times','bold');
+    doc.setFontSize(20);
+    doc.text('Samhitha Ayyagari', M, y); y += 18;
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(9.5);
+    doc.text('Chicago, IL, 60605   \u00B7   781-459-3660   \u00B7   sam123ayya@gmail.com', M, y);
+    y += 20;
+
+    heading('Objective');
+    para('Culinary Management student looking for part-time server position to provide excellent hospitality while continuing to grow in the restaurant industry.', 10, 4);
+
+    heading('Education');
+    entry('Kendall College at National Louis University, Chicago Illinois', 'Sept 2025 \u2013 Present');
+    para('Bachelor of Arts, Culinary Management', 9.5, 3);
+    para('Relevant Coursework: Foundations of Professional Cooking, Nutritional Cooking, Food Ethics, and Exploring the Hospitality Industry', 9.5, 4);
+
+    heading('Experience');
+    entry('Sakana All-You-Can-Eat Sushi \u2014 Chicago, Illinois', 'Jan 2026 \u2013 July 2026', 'Server');
+    bullet('Served up to 60 guests in a shift');
+    bullet('Provided friendly customer service');
+    bullet('Able to multi-task in a high-pressure environment');
+    y += 6;
+
+    entry('Rail Trail Flatbread Co. \u2014 Milford, Massachusetts', 'Aug 2024 \u2013 Aug 2025', 'Host/Expeditor');
+    bullet('Greeted and seated guests in an organized manner');
+    bullet('Handled takeout orders');
+    bullet('Cleaned and set tables');
+    bullet('Ran food with extensive menu and allergen knowledge');
+    bullet('Expedited up to 300 orders in one shift');
+    y += 6;
+
+    entry('Panera Bread \u2014 Greenville, Rhode Island', 'Oct 2023 \u2013 Jul 2024', 'Drive-Through Team Member');
+    bullet('Fulfilled drive-through and dine-in orders in a fast-paced environment');
+    bullet('Assisted with prep and expediting in the kitchen');
+    bullet('Learned closing operations of a kitchen');
+    y += 6;
+
+    entry('Market Basket \u2014 Bellingham, MA', 'Apr 2022 \u2013 Jun 2023', 'Cashier');
+    bullet('Used customer service skills to check guests out efficiently');
+    bullet('Gained experience using POS systems');
+    bullet('Effectively and accurately checked people out');
+
+    heading('Stage Experience');
+    entry('Frontera Grill \u2014 Chicago, Illinois', null);
+    bullet('Plated and prepared a 6-course fine-dining tasting menu for a private event of 36 guests');
+    bullet('Gained exposure to professional fine-dining kitchen operations and event execution');
+    bullet('Assisted with Mise-En-Place');
+    y += 6;
+
+    entry('Sifr \u2014 Chicago, Illinois', null);
+    bullet('Assisted with prepping small plates, herbs, and vegetables');
+    bullet('Supported Chefs with small plates during a charity gala');
+    bullet('Enhanced self-proficiency by working in a high-volume event service');
+
+    heading('Volunteer Work');
+    entry('National Restaurant Association \u2014 Chicago, Illinois', null);
+    bullet('Prepared and plated 4 courses for guests');
+    bullet('Ran food from kitchen');
+    bullet('Served over 500 people a day');
+    bullet('Worked with a team of 5');
+
+    heading('Certifications');
+    bullet('ServSafe Food Handler\u2019s Certification \u2014 Exp. 6/18/2029');
+    bullet('ServSafe Allergen Awareness Certification \u2014 Exp. 6/12/2029');
+    bullet('BASSET Certification \u2014 Exp. 7/26/2029');
+
+    doc.save('Samhitha Ayyagari - Resume.pdf');
+  });
+})();
+
+/* ---------- CROSSED UTENSILS 3D ---------- */
+(function(){
+  const wrap = document.getElementById('utensil-canvas-wrap');
+  const hint = document.getElementById('utensil-hint');
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth/wrap.clientHeight, 0.1, 100);
+  camera.position.set(0, 0, 8);
+
+  const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+  wrap.appendChild(renderer.domElement);
+
+  scene.add(new THREE.HemisphereLight(0xF6E3E5, 0x93396B, 0.7));
+  const key = new THREE.DirectionalLight(0xffffff, 1.3);
+  key.position.set(4, 6, 6); scene.add(key);
+  const rimLight = new THREE.DirectionalLight(0xBB528A, 1.8);
+  rimLight.position.set(-6, 2, -4); scene.add(rimLight);
+  const fillLight = new THREE.DirectionalLight(0x93396B, 0.9);
+  fillLight.position.set(0, -5, 3); scene.add(fillLight);
+
+  // synthetic equirectangular environment so the metal has believable
+  // reflections — lavender blush / fuchsia plum studio gradient
+  function buildEnvTexture(){
+    const c = document.createElement('canvas');
+    c.width = 512; c.height = 256;
+    const ctx = c.getContext('2d');
+    const g = ctx.createLinearGradient(0,0,0,256);
+    g.addColorStop(0.00, '#F6E3E5');
+    g.addColorStop(0.20, '#E9AFC6');
+    g.addColorStop(0.38, '#BB528A');
+    g.addColorStop(0.50, '#FFFFFF');
+    g.addColorStop(0.62, '#BB528A');
+    g.addColorStop(0.80, '#E4C8D1');
+    g.addColorStop(1.00, '#F6E3E5');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,512,256);
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.fillRect(0,124,512,8);
+    const tex = new THREE.CanvasTexture(c);
+    tex.mapping = THREE.EquirectangularReflectionMapping;
+    tex.encoding = THREE.sRGBEncoding;
+    return tex;
+  }
+  const envTex = buildEnvTexture();
+
+  const metalMat = new THREE.MeshPhysicalMaterial({
+    color: 0xD9D7D8, metalness: 1, roughness: 0.18,
+    clearcoat: 0.7, clearcoatRoughness: 0.15, reflectivity: 1,
+    envMap: envTex, envMapIntensity: 1.3
+  });
+
+  const group = new THREE.Group();
+  scene.add(group);
+
+  function makeHandleShape(length, opts){
+    const o = Object.assign({neckBase:0.05, paddleBump:0.13, paddleCenter:0.055, paddleSigma:0.05,
+                              shoulderBump:0.05, shoulderCenter:0.95, shoulderSigma:0.09}, opts||{});
+    function halfWidth(t){
+      const paddle = o.paddleBump * Math.exp(-Math.pow((t-o.paddleCenter)/o.paddleSigma, 2));
+      const shoulder = o.shoulderBump * Math.exp(-Math.pow((t-o.shoulderCenter)/o.shoulderSigma, 2));
+      return o.neckBase + paddle + shoulder;
+    }
+    const N = 48;
+    const right = [];
+    for(let i=0;i<=N;i++){
+      const t = i/N;
+      right.push(new THREE.Vector2(halfWidth(t), t*length));
+    }
+    const shape = new THREE.Shape();
+    shape.moveTo(right[0].x, right[0].y);
+    for(let i=1;i<right.length;i++) shape.lineTo(right[i].x, right[i].y);
+    for(let i=right.length-1;i>=0;i--) shape.lineTo(-right[i].x, right[i].y);
+    shape.closePath();
+    return shape;
+  }
+
+  function makeHandleMesh(length, opts){
+    const geo = new THREE.ExtrudeGeometry(makeHandleShape(length, opts), {
+      depth:0.075, bevelEnabled:true, bevelThickness:0.018, bevelSize:0.014, bevelSegments:4, curveSegments:24
+    });
+    geo.translate(0, 0, -0.0375);
+    geo.computeVertexNormals();
+    return new THREE.Mesh(geo, metalMat);
+  }
+
+  function addMedallion(parent, y){
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.075, 0.008, 8, 32), metalMat);
+    ring.position.set(0, y, 0.04);
+    parent.add(ring);
+  }
+
+  function addSpine(parent, length){
+    const spine = new THREE.Mesh(new THREE.BoxGeometry(0.014, length*0.72, 0.02), metalMat);
+    spine.position.set(0, length*0.5, 0.048);
+    parent.add(spine);
+  }
+
+  function buildForkHeadShape(p){
+  const gapW = (2*p.headW - p.tineCount*p.tineBaseW) / (p.tineCount - 1);
+  const notchY = p.flareY + p.webY;
+  const tipY = notchY + p.tineLen;
+  const baseX = [];
+  let x = -p.headW;
+  for(let i=0;i<p.tineCount;i++){ baseX.push(x); x += p.tineBaseW + gapW; }
+
+  const shape = new THREE.Shape();
+  shape.moveTo(p.neckW, 0);
+  shape.lineTo(p.headW, p.flareY);
+  shape.lineTo(p.headW, notchY);
+
+  for(let i=p.tineCount-1;i>=0;i--){
+    const xL = baseX[i], xR = xL + p.tineBaseW;
+    const xC = (xL+xR)/2;
+    const taper = (p.tineBaseW - p.tineTipW)/2;
+    shape.lineTo(xR, notchY);
+    shape.lineTo(xR - taper, tipY);
+    shape.quadraticCurveTo(xC, tipY + p.tipBulge, xL + taper, tipY);
+    shape.lineTo(xL, notchY);
+    if(i>0) shape.lineTo(baseX[i-1] + p.tineBaseW, notchY);
+  }
+  shape.lineTo(-p.headW, p.flareY);
+  shape.lineTo(-p.neckW, 0);
+  shape.closePath();
+  return shape;
+}
+
+function buildFork(){
+  const fork = new THREE.Group();
+  const handleLen = 2.5;
+  const handle = makeHandleMesh(handleLen, {shoulderBump:0.05, shoulderCenter:0.97, shoulderSigma:0.05});
+  fork.add(handle);
+  addMedallion(fork, handleLen*0.075);
+  addSpine(fork, handleLen*0.87);
+
+  const P = {
+    neckW:0.1, headW:0.205, flareY:0.16, webY:0.05,
+    tineCount:4, tineBaseW:0.086, tineTipW:0.03,
+    tineLen:0.92, tipBulge:0.028
+  };
+  const headGeo = new THREE.ExtrudeGeometry(buildForkHeadShape(P), {
+    depth:0.058, bevelEnabled:true, bevelThickness:0.012, bevelSize:0.01, bevelSegments:4, curveSegments:16
+  });
+  headGeo.translate(0, 0, -0.029);
+
+  // subtle forward curve on the tines, like a real stamped fork
+  const notchY = P.flareY + P.webY;
+  const pos = headGeo.attributes.position;
+  for(let i=0;i<pos.count;i++){
+    const y = pos.getY(i);
+    if(y > notchY){
+      const t = Math.min(1, (y-notchY)/P.tineLen);
+      pos.setZ(i, pos.getZ(i) + 0.05*t*t);
+    }
+  }
+  pos.needsUpdate = true;
+  headGeo.computeVertexNormals();
+
+  const head = new THREE.Mesh(headGeo, metalMat);
+  head.position.y = handleLen - 0.05;
+  fork.add(head);
+
+  const headTopY = (handleLen-0.05) + notchY + P.tineLen;
+  const total = headTopY;
+  fork.position.y = -total/2 + 0.15;
+  return fork;
+}
+
+
+  function buildSpoon(){
+  const spoon = new THREE.Group();
+  const handleLen = 2.35;
+  const handle = makeHandleMesh(handleLen, {shoulderBump:0.05, shoulderCenter:0.97, shoulderSigma:0.05});
+  spoon.add(handle);
+  addMedallion(spoon, handleLen*0.075);
+  addSpine(spoon, handleLen*0.82);
+
+  // neck flare bridging the flat handle into the round bowl
+  const neckW = 0.1, flareW = 0.235, flareLen = 0.22;
+  const flareShape = new THREE.Shape();
+  flareShape.moveTo(neckW, 0);
+  flareShape.quadraticCurveTo(flareW*0.55, flareLen*0.15, flareW, flareLen*0.62);
+  flareShape.quadraticCurveTo(flareW*1.02, flareLen*0.86, flareW*0.78, flareLen);
+  flareShape.lineTo(-flareW*0.78, flareLen);
+  flareShape.quadraticCurveTo(-flareW*1.02, flareLen*0.86, -flareW, flareLen*0.62);
+  flareShape.quadraticCurveTo(-flareW*0.55, flareLen*0.15, -neckW, 0);
+  flareShape.closePath();
+  const flareGeo = new THREE.ExtrudeGeometry(flareShape, {depth:0.05, bevelEnabled:true, bevelThickness:0.01, bevelSize:0.009, bevelSegments:4, curveSegments:16});
+  flareGeo.translate(0,0,-0.025);
+  flareGeo.computeVertexNormals();
+  const flare = new THREE.Mesh(flareGeo, metalMat);
+  const flareBaseY = handleLen - 0.07;
+  flare.position.y = flareBaseY;
+  spoon.add(flare);
+
+  const thetaLen = Math.PI*0.36;
+  const bowlGeo = new THREE.SphereGeometry(1, 64, 48, 0, Math.PI*2, 0, thetaLen);
+  bowlGeo.rotateX(Math.PI/2);
+  const BX=0.37, BY=0.58, BZ=0.105;
+  bowlGeo.scale(BX, BY, BZ);
+  bowlGeo.computeVertexNormals();
+  const bowlMat = metalMat.clone();
+  bowlMat.side = THREE.DoubleSide;
+  const bowl = new THREE.Mesh(bowlGeo, bowlMat);
+
+  const maxR = Math.sin(thetaLen);
+  const halfLenY = BY*maxR;
+  const bowlCenterY = flareBaseY + flareLen - 0.05;
+  bowl.position.y = bowlCenterY;
+  spoon.add(bowl);
+
+  const rimZ = Math.cos(thetaLen) * BZ;
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(1, 0.012, 10, 64), metalMat);
+  rim.scale.set(BX*maxR, BY*maxR, 1);
+  rim.position.set(0, bowlCenterY, rimZ);
+  spoon.add(rim);
+
+  const total = bowlCenterY + halfLenY;
+  spoon.position.y = -total/2 + 0.15;
+  return spoon;
+}
+
+
+  const forkGroup = new THREE.Group();
+  forkGroup.add(buildFork());
+  forkGroup.rotation.z = Math.PI/4;
+  forkGroup.position.z = 0.18;
+  group.add(forkGroup);
+
+  const spoonGroup = new THREE.Group();
+  spoonGroup.add(buildSpoon());
+  spoonGroup.rotation.z = -Math.PI/4;
+  spoonGroup.position.z = -0.18;
+  group.add(spoonGroup);
+
+  group.scale.setScalar(1.0);
+
+  // drag-to-rotate, scoped to this canvas only
+  let isDragging = false;
+  let prev = {x:0,y:0};
+  let velocity = {x:0,y:0};
+  let rotation = {x:-0.15, y:0.4};
+
+  function down(x,y){ isDragging=true; prev={x,y}; velocity={x:0,y:0}; hint.classList.add('hide'); wrap.classList.add('grabbing'); }
+  function move(x,y){
+    if(!isDragging) return;
+    const dx = x-prev.x, dy = y-prev.y;
+    velocity.y = dx*0.005; velocity.x = dy*0.005;
+    rotation.y += velocity.y; rotation.x += velocity.x;
+    rotation.x = Math.max(-1.2, Math.min(1.2, rotation.x));
+    prev = {x,y};
+  }
+  function up(){ isDragging=false; wrap.classList.remove('grabbing'); }
+
+  renderer.domElement.addEventListener('mousedown', e=>down(e.clientX,e.clientY));
+  window.addEventListener('mousemove', e=>move(e.clientX,e.clientY));
+  window.addEventListener('mouseup', up);
+  renderer.domElement.addEventListener('touchstart', e=>{ const t=e.touches[0]; down(t.clientX,t.clientY); }, {passive:true});
+  renderer.domElement.addEventListener('touchmove', e=>{ const t=e.touches[0]; move(t.clientX,t.clientY); e.preventDefault(); }, {passive:false});
+  window.addEventListener('touchend', up);
+
+  const idleSpin = 0.0022;
+  function animate(){
+    requestAnimationFrame(animate);
+    if(!isDragging){
+      velocity.x *= 0.92; velocity.y *= 0.92;
+      rotation.x += velocity.x; rotation.y += velocity.y;
+      if(Math.abs(velocity.x)<0.0003 && Math.abs(velocity.y)<0.0003){ rotation.y += idleSpin; }
+    }
+    group.rotation.x = rotation.x;
+    group.rotation.y = rotation.y;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', ()=>{
+    camera.aspect = wrap.clientWidth/wrap.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+  });
+})();
+</script>
+
+</body></html>
